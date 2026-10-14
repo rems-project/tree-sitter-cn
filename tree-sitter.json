@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "cn",
+      "camelcase": "CN",
+      "title": "CN",
+      "scope": "source.cn",
+      "file-types": [],
+      "injection-regex": "^cn$",
+      "class-name": "TreeSitterCn"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for CN, the separation-logic specification language for C",
+    "authors": [
+      {
+        "name": "RE Ltd",
+        "url": ""
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/rems-project/tree-sitter-cn",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}
