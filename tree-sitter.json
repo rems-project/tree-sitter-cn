@@ -8,6 +8,7 @@
       "scope": "source.cn",
       "file-types": [],
       "injection-regex": "^cn$",
+      "highlights": "queries/highlights.scm",
       "class-name": "TreeSitterCn"
     }
   ],
