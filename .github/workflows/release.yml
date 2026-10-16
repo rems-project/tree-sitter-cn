@@ -1,0 +1,56 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:base-devel
+    steps:
+      - run: pacman -Syu --noconfirm git tree-sitter-cli
+      - uses: actions/checkout@v7
+      - working-directory: contrib/archlinux
+        run: |
+          useradd build
+          chown -R build .
+          runuser -u build -- makepkg --skipchecksums
+      - uses: actions/upload-artifact@v7
+        with:
+          name: archlinux
+          path: contrib/archlinux/*.pkg.tar.zst
+  deb:
+    strategy:
+      matrix:
+        distro: [debian, ubuntu]
+    runs-on: ubuntu-latest
+    container: docker.io/library/${{ matrix.distro }}:latest
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - run: apt-get update && apt-get install -y build-essential debhelper tree-sitter-cli
+      - uses: actions/checkout@v7
+      - run: |
+          . /etc/os-release
+          cp -r contrib/debian debian
+          sed -i "1s/(\([^)]*\))/(\1~$ID$VERSION_ID)/" debian/changelog
+          dpkg-buildpackage -us -uc -b
+          mkdir dist && mv ../libtree-sitter-cn_*.deb dist/
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.distro }}
+          path: dist/*.deb
+  release:
+    permissions:
+      contents: write
+    needs: [arch, deb]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+      - run: gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" dist/*
+        env:
+          GH_TOKEN: ${{ github.token }}
