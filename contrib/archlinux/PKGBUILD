@@ -1,0 +1,37 @@
+# Maintainer: Rigorous Engineering Ltd <david.kaloper@rigorous-engineering.com>
+
+pkgname=tree-sitter-cn
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='CN grammar for tree-sitter'
+arch=(x86_64)
+url=https://github.com/rems-project/tree-sitter-cn
+license=(MIT)
+groups=(tree-sitter-grammars)
+makedepends=(
+  git
+  tree-sitter-cli
+)
+optdepends=('tree-sitter: core library')
+provides=("lib$pkgname.so")
+source=("git+$url.git#commit=v$pkgver")
+
+prepare() {
+  cd $pkgname
+  tree-sitter generate --js-runtime native
+}
+
+build() {
+  cd $pkgname
+  make PREFIX=/usr PARSER_URL=$url
+}
+
+package() {
+  install -d "$pkgdir"/usr/lib/tree_sitter
+  ln -s /usr/lib/lib$pkgname.so "$pkgdir"/usr/lib/tree_sitter/${pkgname#tree-sitter-}.so
+
+  cd $pkgname
+  make DESTDIR="$pkgdir" PREFIX=/usr install
+  install -Dm644 -t "$pkgdir"/usr/share/doc/$pkgname README.md
+  install -Dm644 -t "$pkgdir"/usr/share/licenses/$pkgname LICENSE
+}
