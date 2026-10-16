@@ -1,0 +1,11 @@
+Source: tree-sitter-cn
+Maintainer: Rigorous Engineering Ltd <david.kaloper@rigorous-engineering.com>
+Build-Depends:
+  debhelper-compat (= 13),
+  tree-sitter-cli
+Section: libs
+
+Package: libtree-sitter-cn
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: CN grammar for tree-sitter

@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+include /usr/share/dpkg/architecture.mk
+
+export PREFIX = /usr
+export LIBDIR = /usr/lib/$(DEB_HOST_MULTIARCH)
+export TS = true
+
+%:
+	dh $@
+
+execute_before_dh_auto_build:
+	tree-sitter generate src/grammar.json
+
+override_dh_link:
+	dh_link usr/lib/$(DEB_HOST_MULTIARCH)/libtree-sitter-cn.so usr/lib/nvim/parser/cn.so \
+		usr/share/tree-sitter/queries/cn usr/share/nvim/site/queries/cn
+
