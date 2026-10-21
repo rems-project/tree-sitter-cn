@@ -1,0 +1,285 @@
+================================================================================
+Proof-guidance statements without a corpus site
+================================================================================
+
+/*@ pack Node(p);
+    unpack Node(...);
+    cn_have x == 1i32;
+    cn_print(x);
+    inline f, g; @*/
+
+--------------------------------------------------------------------------------
+
+(cn
+  (magic_open)
+  (pack_unpack
+    (pred
+      (named
+        (identifier))
+      (argument_list
+        (identifier))))
+  (pack_unpack
+    (pred
+      (named
+        (identifier))
+      (elided_arguments)))
+  (have
+    (expr_binop
+      (identifier)
+      (const_bits)))
+  (print
+    (identifier))
+  (inline
+    (identifier)
+    (identifier))
+  (magic_close))
+
+================================================================================
+List literals and index updates
+================================================================================
+
+/*@ requires let xs = [1i32, 2i32, 3i32];
+             let m2 = m[0i32: 1i32, 1i32: 2i32];
+    ensures  m2[0i32] == 1i32; @*/
+
+--------------------------------------------------------------------------------
+
+(cn
+  (magic_open)
+  (func_spec
+    (requires_clauses
+      (clet_expr
+        (identifier)
+        (expr_list
+          (const_bits)
+          (const_bits)
+          (const_bits)))
+      (clet_expr
+        (identifier)
+        (expr_arrayindexupdates
+          (identifier)
+          (index_update
+            (const_bits)
+            (const_bits))
+          (index_update
+            (const_bits)
+            (const_bits)))))
+    (ensures_clauses
+      (cconstr
+        (expr_binop
+          (expr_map_get
+            (identifier)
+            (const_bits))
+          (const_bits)))))
+  (magic_close))
+
+================================================================================
+Collection base types
+================================================================================
+
+/*@ function (real) measure(cn_list<integer> xs, cn_set<i16> s, cn_tuple<u16, i128, u128> t) @*/
+
+--------------------------------------------------------------------------------
+
+(cn
+  (magic_open)
+  (function
+    (real)
+    (identifier)
+    (args
+      (arg
+        (list
+          (integer))
+        (identifier))
+      (arg
+        (set
+          (bits))
+        (identifier))
+      (arg
+        (tuple
+          (bits)
+          (bits)
+          (bits))
+        (identifier))))
+  (magic_close))
+
+================================================================================
+Character and floating constants
+================================================================================
+
+/*@ requires c == 'a'; f == 1.5; g == 2e3; h == 0x1.8p1; @*/
+
+--------------------------------------------------------------------------------
+
+(cn
+  (magic_open)
+  (func_spec
+    (requires_clauses
+      (cconstr
+        (expr_binop
+          (identifier)
+          (character_const)))
+      (cconstr
+        (expr_binop
+          (identifier)
+          (floating_const)))
+      (cconstr
+        (expr_binop
+          (identifier)
+          (floating_const)))
+      (cconstr
+        (expr_binop
+          (identifier)
+          (floating_const)))))
+  (magic_close))
+
+================================================================================
+C type names with qualifiers, declarators and parameter lists
+================================================================================
+
+/*@ requires take a = RW<const volatile unsigned short>(p);
+             take b = W<int * restrict>(q);
+    ensures  sizeof<union u> == sizeof<enum e>;
+             sizeof<_Atomic _Bool> == sizeof<double _Complex>;
+             sizeof<float (*)(int, ...)> == sizeof<int (*)[4]>;
+             sizeof<void (register int, extern char, static long, auto short, typedef float, _Thread_local double, inline _Noreturn void)> == 8i64; @*/
+
+--------------------------------------------------------------------------------
+
+(cn
+  (magic_open)
+  (func_spec
+    (requires_clauses
+      (clet_resource
+        (identifier)
+        (pred
+          (owned
+            (type_name
+              (type_qualifier)
+              (type_qualifier)
+              (primitive_type)
+              (primitive_type)))
+          (argument_list
+            (identifier))))
+      (clet_resource
+        (identifier)
+        (pred
+          (block
+            (type_name
+              (primitive_type)
+              (abstract_pointer_declarator
+                (type_qualifier))))
+          (argument_list
+            (identifier)))))
+    (ensures_clauses
+      (cconstr
+        (expr_binop
+          (expr_sizeof
+            (type_name
+              (union_specifier
+                (identifier))))
+          (expr_sizeof
+            (type_name
+              (enum_specifier
+                (identifier))))))
+      (cconstr
+        (expr_binop
+          (expr_sizeof
+            (type_name
+              (type_qualifier)
+              (primitive_type)))
+          (expr_sizeof
+            (type_name
+              (primitive_type)
+              (primitive_type)))))
+      (cconstr
+        (expr_binop
+          (expr_sizeof
+            (type_name
+              (primitive_type)
+              (abstract_function_declarator
+                (abstract_parenthesized_declarator
+                  (abstract_pointer_declarator))
+                (parameter_declaration
+                  (primitive_type)))))
+          (expr_sizeof
+            (type_name
+              (primitive_type)
+              (abstract_array_declarator
+                (abstract_parenthesized_declarator
+                  (abstract_pointer_declarator))
+                (const_integer))))))
+      (cconstr
+        (expr_binop
+          (expr_sizeof
+            (type_name
+              (primitive_type)
+              (abstract_function_declarator
+                (parameter_declaration
+                  (storage_class_specifier)
+                  (primitive_type))
+                (parameter_declaration
+                  (storage_class_specifier)
+                  (primitive_type))
+                (parameter_declaration
+                  (storage_class_specifier)
+                  (primitive_type))
+                (parameter_declaration
+                  (storage_class_specifier)
+                  (primitive_type))
+                (parameter_declaration
+                  (storage_class_specifier)
+                  (primitive_type))
+                (parameter_declaration
+                  (storage_class_specifier)
+                  (primitive_type))
+                (parameter_declaration
+                  (function_specifier)
+                  (function_specifier)
+                  (primitive_type)))))
+          (const_bits)))))
+  (magic_close))
+
+================================================================================
+Keyword in expression position
+:error
+================================================================================
+
+/*@ requires x == function; @*/
+
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Keyword as a binder
+:error
+================================================================================
+
+/*@ requires let predicate = 1i32; @*/
+
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+Resource keyword as a function call
+:error
+================================================================================
+
+/*@ requires let V = RW(v); @*/
+
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+List type without the cn_ prefix
+:error
+================================================================================
+
+/*@ function (list<integer>) f() @*/
+
+--------------------------------------------------------------------------------
+
+
