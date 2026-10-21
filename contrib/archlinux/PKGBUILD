@@ -1,7 +1,7 @@
 # Maintainer: Rigorous Engineering Ltd <david.kaloper@rigorous-engineering.com>
 
 pkgname=tree-sitter-cn
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc='CN grammar for tree-sitter'
 arch=(x86_64)
@@ -23,7 +23,7 @@ prepare() {
 
 build() {
   cd $pkgname
-  make PREFIX=/usr PARSER_URL=$url
+  make PREFIX=/usr
 }
 
 package() {

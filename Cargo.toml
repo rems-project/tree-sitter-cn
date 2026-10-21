@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-cn"
 description = "Tree-sitter grammar for CN, the separation-logic specification language for C"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["RE Ltd"]
 license = "MIT"
 readme = "README.md"
