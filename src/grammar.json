@@ -4920,5 +4920,388 @@
     "_pred",
     "_pat"
   ],
-  "reserved": {}
+  "reserved": {
+    "global": [
+      {
+        "type": "STRING",
+        "value": "Block"
+      },
+      {
+        "type": "STRING",
+        "value": "NULL"
+      },
+      {
+        "type": "STRING",
+        "value": "Owned"
+      },
+      {
+        "type": "STRING",
+        "value": "RW"
+      },
+      {
+        "type": "STRING",
+        "value": "W"
+      },
+      {
+        "type": "STRING",
+        "value": "_"
+      },
+      {
+        "type": "STRING",
+        "value": "_Atomic"
+      },
+      {
+        "type": "STRING",
+        "value": "_Bool"
+      },
+      {
+        "type": "STRING",
+        "value": "_Complex"
+      },
+      {
+        "type": "STRING",
+        "value": "_Noreturn"
+      },
+      {
+        "type": "STRING",
+        "value": "_Thread_local"
+      },
+      {
+        "type": "STRING",
+        "value": "accesses"
+      },
+      {
+        "type": "STRING",
+        "value": "alloc_id"
+      },
+      {
+        "type": "STRING",
+        "value": "apply"
+      },
+      {
+        "type": "STRING",
+        "value": "array_shift"
+      },
+      {
+        "type": "STRING",
+        "value": "assert"
+      },
+      {
+        "type": "STRING",
+        "value": "auto"
+      },
+      {
+        "type": "STRING",
+        "value": "boolean"
+      },
+      {
+        "type": "STRING",
+        "value": "char"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_function"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_ghost"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_have"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_list"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_print"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_set"
+      },
+      {
+        "type": "STRING",
+        "value": "cn_tuple"
+      },
+      {
+        "type": "STRING",
+        "value": "const"
+      },
+      {
+        "type": "STRING",
+        "value": "datatype"
+      },
+      {
+        "type": "STRING",
+        "value": "default"
+      },
+      {
+        "type": "STRING",
+        "value": "derive_constraints"
+      },
+      {
+        "type": "STRING",
+        "value": "double"
+      },
+      {
+        "type": "STRING",
+        "value": "each"
+      },
+      {
+        "type": "STRING",
+        "value": "else"
+      },
+      {
+        "type": "STRING",
+        "value": "ensures"
+      },
+      {
+        "type": "STRING",
+        "value": "enum"
+      },
+      {
+        "type": "STRING",
+        "value": "extern"
+      },
+      {
+        "type": "STRING",
+        "value": "extract"
+      },
+      {
+        "type": "STRING",
+        "value": "false"
+      },
+      {
+        "type": "STRING",
+        "value": "float"
+      },
+      {
+        "type": "STRING",
+        "value": "focus"
+      },
+      {
+        "type": "STRING",
+        "value": "from_bytes"
+      },
+      {
+        "type": "STRING",
+        "value": "function"
+      },
+      {
+        "type": "STRING",
+        "value": "good"
+      },
+      {
+        "type": "STRING",
+        "value": "i128"
+      },
+      {
+        "type": "STRING",
+        "value": "i16"
+      },
+      {
+        "type": "STRING",
+        "value": "i32"
+      },
+      {
+        "type": "STRING",
+        "value": "i64"
+      },
+      {
+        "type": "STRING",
+        "value": "i8"
+      },
+      {
+        "type": "STRING",
+        "value": "if"
+      },
+      {
+        "type": "STRING",
+        "value": "implies"
+      },
+      {
+        "type": "STRING",
+        "value": "inline"
+      },
+      {
+        "type": "STRING",
+        "value": "instantiate"
+      },
+      {
+        "type": "STRING",
+        "value": "int"
+      },
+      {
+        "type": "STRING",
+        "value": "integer"
+      },
+      {
+        "type": "STRING",
+        "value": "inv"
+      },
+      {
+        "type": "STRING",
+        "value": "lemma"
+      },
+      {
+        "type": "STRING",
+        "value": "let"
+      },
+      {
+        "type": "STRING",
+        "value": "long"
+      },
+      {
+        "type": "STRING",
+        "value": "map"
+      },
+      {
+        "type": "STRING",
+        "value": "match"
+      },
+      {
+        "type": "STRING",
+        "value": "member_shift"
+      },
+      {
+        "type": "STRING",
+        "value": "offsetof"
+      },
+      {
+        "type": "STRING",
+        "value": "pack"
+      },
+      {
+        "type": "STRING",
+        "value": "pointer"
+      },
+      {
+        "type": "STRING",
+        "value": "predicate"
+      },
+      {
+        "type": "STRING",
+        "value": "real"
+      },
+      {
+        "type": "STRING",
+        "value": "register"
+      },
+      {
+        "type": "STRING",
+        "value": "requires"
+      },
+      {
+        "type": "STRING",
+        "value": "restrict"
+      },
+      {
+        "type": "STRING",
+        "value": "return"
+      },
+      {
+        "type": "STRING",
+        "value": "short"
+      },
+      {
+        "type": "STRING",
+        "value": "signed"
+      },
+      {
+        "type": "STRING",
+        "value": "sizeof"
+      },
+      {
+        "type": "STRING",
+        "value": "spec"
+      },
+      {
+        "type": "STRING",
+        "value": "split_case"
+      },
+      {
+        "type": "STRING",
+        "value": "static"
+      },
+      {
+        "type": "STRING",
+        "value": "struct"
+      },
+      {
+        "type": "STRING",
+        "value": "take"
+      },
+      {
+        "type": "STRING",
+        "value": "to_bytes"
+      },
+      {
+        "type": "STRING",
+        "value": "true"
+      },
+      {
+        "type": "STRING",
+        "value": "trusted"
+      },
+      {
+        "type": "STRING",
+        "value": "type_synonym"
+      },
+      {
+        "type": "STRING",
+        "value": "typedef"
+      },
+      {
+        "type": "STRING",
+        "value": "u128"
+      },
+      {
+        "type": "STRING",
+        "value": "u16"
+      },
+      {
+        "type": "STRING",
+        "value": "u32"
+      },
+      {
+        "type": "STRING",
+        "value": "u64"
+      },
+      {
+        "type": "STRING",
+        "value": "u8"
+      },
+      {
+        "type": "STRING",
+        "value": "unchanged"
+      },
+      {
+        "type": "STRING",
+        "value": "unfold"
+      },
+      {
+        "type": "STRING",
+        "value": "union"
+      },
+      {
+        "type": "STRING",
+        "value": "unpack"
+      },
+      {
+        "type": "STRING",
+        "value": "unsigned"
+      },
+      {
+        "type": "STRING",
+        "value": "void"
+      },
+      {
+        "type": "STRING",
+        "value": "volatile"
+      }
+    ]
+  }
 }
