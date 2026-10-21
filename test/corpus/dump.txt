@@ -29214,24 +29214,13 @@ cn/b_xor.c (1)
 
 ================================================================================
 cn/bad_col.error.c (1)
+:error
 ================================================================================
 
 /*@ requires
               x < 2147483647 + function; @*/
 
 --------------------------------------------------------------------------------
-
-(cn
-  (magic_open)
-  (func_spec
-    (requires_clauses
-      (cconstr
-        (expr_binop
-          (identifier)
-          (expr_binop
-            (const_integer)
-            (identifier))))))
-  (magic_close))
 
 ================================================================================
 cn/bad_ordering.error.c (1)
@@ -43007,23 +42996,12 @@ cn/tree16/as_auto_mutual_dt/tree16.error.c (26)
 
 ================================================================================
 cn/tree16/as_auto_mutual_dt/tree16.error.c (27)
+:error
 ================================================================================
 
 /*@ requires let V = Owned(v); @*/
 
 --------------------------------------------------------------------------------
-
-(cn
-  (magic_open)
-  (func_spec
-    (requires_clauses
-      (clet_expr
-        (identifier)
-        (expr_call
-          (identifier)
-          (argument_list
-            (identifier))))))
-  (magic_close))
 
 ================================================================================
 cn/tree16/as_auto_mutual_dt/tree16.error.c (28)
@@ -43117,23 +43095,12 @@ cn/tree16/as_auto_mutual_dt/tree16.error.c (31)
 
 ================================================================================
 cn/tree16/as_auto_mutual_dt/tree16.error.c (32)
+:error
 ================================================================================
 
 /*@ ensures let V2 = Owned(v); @*/
 
 --------------------------------------------------------------------------------
-
-(cn
-  (magic_open)
-  (func_spec
-    (ensures_clauses
-      (clet_expr
-        (identifier)
-        (expr_call
-          (identifier)
-          (argument_list
-            (identifier))))))
-  (magic_close))
 
 ================================================================================
 cn/tree16/as_auto_mutual_dt/tree16.error.c (33)
@@ -45217,23 +45184,12 @@ cn/tree16/as_partial_map/tree16.c (12)
 
 ================================================================================
 cn/tree16/as_partial_map/tree16.c (13)
+:error
 ================================================================================
 
 /*@ requires let V = RW(v); @*/
 
 --------------------------------------------------------------------------------
-
-(cn
-  (magic_open)
-  (func_spec
-    (requires_clauses
-      (clet_expr
-        name: (identifier)
-        value: (expr_call
-          function: (identifier)
-          arguments: (argument_list
-            (identifier))))))
-  (magic_close))
 
 ================================================================================
 cn/tree16/as_partial_map/tree16.c (14)
@@ -45327,23 +45283,12 @@ cn/tree16/as_partial_map/tree16.c (17)
 
 ================================================================================
 cn/tree16/as_partial_map/tree16.c (18)
+:error
 ================================================================================
 
 /*@ ensures let V2 = RW(v); @*/
 
 --------------------------------------------------------------------------------
-
-(cn
-  (magic_open)
-  (func_spec
-    (ensures_clauses
-      (clet_expr
-        name: (identifier)
-        value: (expr_call
-          function: (identifier)
-          arguments: (argument_list
-            (identifier))))))
-  (magic_close))
 
 ================================================================================
 cn/tree16/as_partial_map/tree16.c (19)

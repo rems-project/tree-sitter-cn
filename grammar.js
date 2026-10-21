@@ -39,6 +39,23 @@ const PREC = {
 
 const BITS_TYPES = ['i8', 'i16', 'i32', 'i64', 'i128', 'u8', 'u16', 'u32', 'u64', 'u128'];
 
+// cn_lexer.mll (a963cb0) keyword table plus `_` (always UNDERSCORE): no keyword ever lexes as an
+// identifier, so all are reserved everywhere.  `_Alignas` is a keyword without a rule here and
+// cannot be listed; reserved words must be tokens of the grammar.
+const KEYWORDS = [
+  'Block', 'NULL', 'Owned', 'RW', 'W', '_', '_Atomic', '_Bool', '_Complex', '_Noreturn',
+  '_Thread_local', 'accesses', 'alloc_id', 'apply', 'array_shift', 'assert', 'auto', 'boolean',
+  'char', 'cn_function', 'cn_ghost', 'cn_have', 'cn_list', 'cn_print', 'cn_set', 'cn_tuple',
+  'const', 'datatype', 'default', 'derive_constraints', 'double', 'each', 'else', 'ensures',
+  'enum', 'extern', 'extract', 'false', 'float', 'focus', 'from_bytes', 'function', 'good',
+  'i128', 'i16', 'i32', 'i64', 'i8', 'if', 'implies', 'inline', 'instantiate', 'int', 'integer',
+  'inv', 'lemma', 'let', 'long', 'map', 'match', 'member_shift', 'offsetof', 'pack', 'pointer',
+  'predicate', 'real', 'register', 'requires', 'restrict', 'return', 'short', 'signed', 'sizeof',
+  'spec', 'split_case', 'static', 'struct', 'take', 'to_bytes', 'true', 'trusted', 'type_synonym',
+  'typedef', 'u128', 'u16', 'u32', 'u64', 'u8', 'unchanged', 'unfold', 'union', 'unpack',
+  'unsigned', 'void', 'volatile',
+];
+
 const INTEGER = /(0[xX][0-9a-fA-F]+|0[bB][01]+|[0-9]+)/;
 
 function commaSep1(rule) {
@@ -57,6 +74,10 @@ export default grammar({
   name: 'cn',
 
   word: $ => $.identifier,
+
+  reserved: {
+    global: _ => KEYWORDS,
+  },
 
   extras: $ => [/\s/, $.comment],
 
